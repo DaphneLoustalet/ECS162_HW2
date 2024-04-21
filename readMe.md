@@ -1,5 +1,5 @@
 ## Ideas ##
 
-Game 1 (Daphne): Snake \n
-Game 2: \n
-Game 3 (Open Source): Sudoku
+Game 1 (Daphne): Snake  
+Game 2:  
+Game 3 (Open Source): Sudoku  
