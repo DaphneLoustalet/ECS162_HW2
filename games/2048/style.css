@@ -1,0 +1,112 @@
+.container {
+    width: 56%;
+    margin: 0 auto;
+    background-color: #283747;
+    display: -ms-flexbox;
+    /* IE10 */
+    -ms-flex-wrap: wrap;
+    /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 4px;
+    display: grid;
+    grid-template-columns: auto 445px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 440px;
+    height: 440px;
+    margin: 0 auto;
+}
+
+.grid div {
+    width: 100px;
+    height: 100px;
+    background-color: #DE354C;
+    font-size: 40px;
+    text-align: center;
+    color: #f3f3f3;
+    font-weight: bold;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.column-container {
+    padding: 0 4px;
+}
+
+.game-over {
+    color: white;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: teal;
+    min-width: 200px;
+    display: grid;
+}
+
+.game-over-message {
+    padding: 10px;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #DE354C;
+    font-size: 26px;
+}
+
+.grid-above-game {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #DE354C;
+}
+
+.score-container, .best-container {
+    min-width: 40px;
+    position: relative;
+    display: block;
+    background: #932432;
+    padding: 15px 25px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+.scores-container {
+    float: right;
+    display: flex;
+    margin: 10px;
+}
+
+.scores-container *+* {
+    margin-left: 5px;
+}
+
+.new-game-button {
+    background: #DE354C;
+    padding: 0 25px;
+    color: #f9f6f2;
+    height: 40px;
+    line-height: 42px;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.rules-container {
+    margin-top: 10px;
+    padding-top: 20px;
+    color: #f9f6f2;
+    text-align: justify;
+    text-justify: inter-word;
+}

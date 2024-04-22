@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>2048</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <script src="app.js" charset="utf-8"></script>
+</head>
+<div class="container">
+    <div class="column-container">
+        <div class="heading">
+            <h1 class="title">2048</h1>
+        </div>
+        <a class="new-game-button" id="new-button" onclick="restart()">New Game</a>
+        <div class="rules-container">
+            HOW TO PLAY: <br>
+            Use your arrow keys to move the tiles. Tiles with the same number merge into one when they
+            touch.
+            Add them up to reach 2048!
+        </div>
+
+    </div>
+    <div class="column-container">
+        <div class="grid-above-game">
+            <p class="game-intro">
+                Join the tiles and get to <strong>2048!</strong>
+            </p>
+
+            <div class="scores-container">
+                <div class="score-container">
+                    <div class="score-title">score</div>
+                    <span id="score">0</span>
+
+                </div>
+                <div class="best-container">
+                    <div class="score-title">best</div>
+                    <span id="best">0</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="result" id="game-result">
+            <div class="game-over">
+                <span class="game-over-message"> Game over!</span>
+
+                <a class="new-game-button" id="new-button-game-over" onclick="restart()">New Game</a>
+            </div>
+        </div>
+        <div class="grid"></div>
+    </div>
+</div>
+</body>
+
+</html>
