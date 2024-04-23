@@ -1,0 +1,54 @@
+body {
+  font-family: "Sofia", sans-serif;
+  font-size: 30px;
+}
+
+h1.font-effect-outline {
+  color: #ffbf00;
+}
+
+.empty-container {
+  margin: 10%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: none;
+}
+
+.grid-container.parent {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.grid-item {
+  border: 5px solid #022851;
+  padding: none;
+}
+
+.grid-item.inner {
+  border: 1px solid #022851;
+  font-size: 30px;
+  text-align: center;
+}
+
+.footer {
+  background-color: #022851;
+  text-align: center;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-button {
+  font-weight: bold;
+  font-family: "Sofia" sans-serif;
+  font-size: 50px;
+  background-color: #ffbf00;
+  color: black;
+  border: 2px solid black;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
