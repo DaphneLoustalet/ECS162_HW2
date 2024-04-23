@@ -1,9 +1,5 @@
 ## Ideas
 
-Game 1 (Daphne): Snake  
-Game 2:  
-Game 3 (Open Source): Sudoku
-
-## Deployment
-
-Snake: Go live with index.html within the app directory of the Snake Game
+Game 1 (Daphne): Sudoku  
+Game 2 (Andrew): Bingo  
+Game 3 (Open Source): 2048
