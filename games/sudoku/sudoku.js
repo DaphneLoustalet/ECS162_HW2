@@ -31,5 +31,32 @@ function solveClicked() {
 }
 
 function playClicked() {
-  alert("Play button clicked"); // Display a message indicating Play button was clicked
+  const sudokuSolution = generateSudoku();
+  alert(sudokuSolution);
+}
+
+/* Reference Algorithm: https://www.geeksforgeeks.org/sudoku-backtracking-7/ */
+function generateSudoku() {
+  let grid = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  ];
+  if (solveSudoku(grid, 0, 0)) {
+    return grid;
+  } else {
+    return "Play Button clicked";
+  }
+}
+
+function solveSudoku(grid, row, col) {
+  if (row == N - 1 && col == N) {
+    return true;
+  }
 }
