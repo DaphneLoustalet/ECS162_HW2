@@ -33,6 +33,14 @@ h1.font-effect-outline {
   text-align: center;
 }
 
+.grid-item.inner:hover {
+  background-color: #f0f0f0; /* Change background color on hover */
+}
+
+.grid-item.inner.selected {
+  background-color: #c0c0c0; /* Change background color of selected cell */
+}
+
 .footer {
   background-color: #022851;
   text-align: center;

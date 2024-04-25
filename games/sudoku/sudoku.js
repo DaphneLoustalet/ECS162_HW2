@@ -22,24 +22,101 @@
 /* 1. Iterate through game 2d array check if it is same as solution array
  */
 
+/* Document key navigation */
+document.addEventListener("DOMContentLoaded", function () {
+  const gridItems = document.querySelectorAll(".grid-item.inner");
+
+  // Event listener for mouse hover
+  gridItems.forEach((item) => {
+    item.addEventListener("mouseover", function () {
+      if (!this.classList.contains("selected")) {
+        this.style.backgroundColor = "#f0f0f0"; // Change background color on hover
+      }
+    });
+    item.addEventListener("mouseout", function () {
+      if (!this.classList.contains("selected")) {
+        this.style.backgroundColor = ""; // Reset background color when mouse leaves
+      }
+    });
+    // Event listener for cell selection
+    item.addEventListener("click", function () {
+      // Remove highlight from previously selected cell
+      document
+        .querySelectorAll(".grid-item.inner.selected")
+        .forEach((selectedItem) => {
+          selectedItem.classList.remove("selected");
+          selectedItem.style.backgroundColor = "#ffffff"; // Reset background color
+        });
+      // Add highlight to the clicked cell
+      this.classList.add("selected");
+      this.style.backgroundColor = "#c0c0c0"; // Change background color of selected cell
+    });
+  });
+
+  // Event listener for keydown event
+  document.addEventListener("keydown", function (event) {
+    const pressedKey = event.key;
+    const selectedCell = document.querySelector(".grid-item.inner.selected");
+    if (selectedCell && /[1-9]/.test(pressedKey)) {
+      selectedCell.textContent = pressedKey; // Update content of selected cell with pressed digit
+    }
+  });
+});
+
+/* Global Variable to store the sudoku solution */
+let sudokuArray = [
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0,
+];
+
+function isSudokuArrayEmpty() {
+  for (let i = 0; i < sudokuArray.length; i++) {
+    if (sudokuArray[i] != 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
 function goToMainMenu() {
   window.location.href = "../../index.html"; // Redirect to the main menu
 }
 
 function solveClicked() {
-  const array = randomizeSudokuVals();
-  alert(array);
+  /* Place each item in 2D array in its respective container */
+  const gridItems = document.querySelectorAll(".grid-item.inner");
+
+  if (isSudokuArrayEmpty()) {
+    const sudokuSolution = generateSudoku();
+    sudokuArray = mapArray(sudokuSolution.flat());
+  }
+
+  /* Show stored solution */
+  gridItems.forEach((item, index) => {
+    item.innerHTML = sudokuArray[index] !== 0 ? sudokuArray[index] : "";
+  });
 }
 
 function playClicked() {
+  cleanGrid();
   const sudokuSolution = generateSudoku();
-  // alert(sudokuSolution);
-  /* Place each item in 2D array in its respective container */
+  sudokuArray = mapArray(sudokuSolution.flat());
+}
+
+/* Wipe Board Clean */
+function cleanGrid() {
+  sudokuArray = [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0,
+  ];
+
   const gridItems = document.querySelectorAll(".grid-item.inner");
-  const finalSolution = mapArray(sudokuSolution.flat());
-  // alert(finalSolution);
-  gridItems.forEach((item, index) => {
-    item.innerHTML = finalSolution[index] !== 0 ? finalSolution[index] : "";
+  gridItems.forEach((item) => {
+    item.innerHTML = "<br>";
   });
 }
 
