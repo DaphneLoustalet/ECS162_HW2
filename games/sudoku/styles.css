@@ -31,14 +31,16 @@ h1.font-effect-outline {
   border: 1px solid #022851;
   font-size: 30px;
   text-align: center;
+  width: 75px;
+  height: 50px;
 }
 
 .grid-item.inner:hover {
-  background-color: #f0f0f0; /* Change background color on hover */
+  background-color: #f0f0f0;
 }
 
 .grid-item.inner.selected {
-  background-color: #c0c0c0; /* Change background color of selected cell */
+  background-color: #c0c0c0;
 }
 
 .footer {

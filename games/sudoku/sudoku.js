@@ -1,68 +1,3 @@
-/* Play is clicked */
-
-/* 1. Randomly figure out number of spots to show
-   2. Generate random valid solution
-   3. Refresh page, only showing random spots at selected indices
-*/
-
-/* Player pushes arrow keys or space is clicked */
-
-/* 1. Highlight the space
-   2. If valid integer is pressed (0 - 9), place it in the square
-   3. If all spaces have been filled, change solve button to validate solution
-*/
-
-/* Solve Button is clicked */
-
-/* 1. Refresh board showing valid answers
- */
-
-/* Validate Solution is clicked */
-
-/* 1. Iterate through game 2d array check if it is same as solution array
- */
-
-/* Document key navigation */
-document.addEventListener("DOMContentLoaded", function () {
-  const gridItems = document.querySelectorAll(".grid-item.inner");
-
-  // Event listener for mouse hover
-  gridItems.forEach((item) => {
-    item.addEventListener("mouseover", function () {
-      if (!this.classList.contains("selected")) {
-        this.style.backgroundColor = "#f0f0f0"; // Change background color on hover
-      }
-    });
-    item.addEventListener("mouseout", function () {
-      if (!this.classList.contains("selected")) {
-        this.style.backgroundColor = ""; // Reset background color when mouse leaves
-      }
-    });
-    // Event listener for cell selection
-    item.addEventListener("click", function () {
-      // Remove highlight from previously selected cell
-      document
-        .querySelectorAll(".grid-item.inner.selected")
-        .forEach((selectedItem) => {
-          selectedItem.classList.remove("selected");
-          selectedItem.style.backgroundColor = "#ffffff"; // Reset background color
-        });
-      // Add highlight to the clicked cell
-      this.classList.add("selected");
-      this.style.backgroundColor = "#c0c0c0"; // Change background color of selected cell
-    });
-  });
-
-  // Event listener for keydown event
-  document.addEventListener("keydown", function (event) {
-    const pressedKey = event.key;
-    const selectedCell = document.querySelector(".grid-item.inner.selected");
-    if (selectedCell && /[1-9]/.test(pressedKey)) {
-      selectedCell.textContent = pressedKey; // Update content of selected cell with pressed digit
-    }
-  });
-});
-
 /* Global Variable to store the sudoku solution */
 let sudokuArray = [
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -103,6 +38,9 @@ function playClicked() {
   cleanGrid();
   const sudokuSolution = generateSudoku();
   sudokuArray = mapArray(sudokuSolution.flat());
+  /* Enable cell selection of empty cells */
+  addKeyNavigation();
+  revealValues();
 }
 
 /* Wipe Board Clean */
@@ -279,4 +217,104 @@ function check3x3(grid, row, col, num) {
   }
 
   return true;
+}
+
+function addKeyNavigation() {
+  /* Document Key Navigation */
+  const gridItems = document.querySelectorAll(".grid-item.inner");
+
+  // Add event listeners for mouse hover
+  gridItems.forEach((item) => {
+    item.addEventListener("mouseover", mouseOverHandler);
+    item.addEventListener("mouseout", mouseOutHandler);
+    item.addEventListener("click", cellSelectionHandler);
+  });
+
+  /* Add event listener for keydown event */
+  document.addEventListener("keydown", keydownHandler);
+}
+
+function mouseOverHandler() {
+  if (!this.classList.contains("selected")) {
+    /* Change background color on hover */
+    this.style.backgroundColor = "#f0f0f0";
+  }
+}
+
+function mouseOutHandler() {
+  if (!this.classList.contains("selected")) {
+    /* Reset background color when mouse leaves */
+    this.style.backgroundColor = "";
+  }
+}
+
+function cellSelectionHandler() {
+  /* Remove highlight from previously selected cell */
+  document
+    .querySelectorAll(".grid-item.inner.selected")
+    .forEach((selectedItem) => {
+      selectedItem.classList.remove("selected");
+      /* Reset background color */
+      selectedItem.style.backgroundColor = "#ffffff";
+    });
+  /* Add highlight to the clicked cell */
+  this.classList.add("selected");
+  /* Change background color of selected cell */
+  this.style.backgroundColor = "#c0c0c0";
+}
+
+function keydownHandler(event) {
+  const pressedKey = event.key;
+  const selectedCell = document.querySelector(".grid-item.inner.selected");
+  if (selectedCell && /[1-9]/.test(pressedKey)) {
+    /* Update content of selected cell with pressed digit */
+    selectedCell.textContent = pressedKey;
+    /* If all cells are filled, change Solve Button to Validate Solution Button */
+  }
+}
+
+function revealValues() {
+  /* Determine number of values to reveal */
+  let numRevealedVals = Math.floor(Math.random() * (27 - 17 + 1)) + 17;
+  const coordinates = [];
+
+  /* Randomly pick numValues different indices for selection */
+  while (coordinates.length < numRevealedVals) {
+    const x = Math.floor(Math.random() * 9);
+    const y = Math.floor(Math.random() * 9);
+    const coordinate = [x, y];
+
+    /* Check if coordinate pair is unique */
+    if (!coordinates.some(([cx, cy]) => cx === x && cy === y)) {
+      coordinates.push(coordinate);
+    }
+  }
+
+  /* Disable selection and text entry for those particular indices */
+  const gridItems = blockSelectedItems(coordinates);
+
+  /* Show those indices on the sudoku board */
+  showSelectedItems(coordinates, gridItems);
+}
+
+function blockSelectedItems(coordinates) {
+  const gridItems = document.querySelectorAll(".grid-item.inner");
+  coordinates.forEach(([x, y]) => {
+    const index = x * 9 + y;
+    const cell = gridItems[index];
+    cell.classList.add("revealed");
+    cell.removeEventListener("mouseover", mouseOverHandler);
+    cell.removeEventListener("mouseout", mouseOutHandler);
+    cell.removeEventListener("click", cellSelectionHandler);
+    cell.style.pointerEvents = "none";
+  });
+  return gridItems;
+}
+
+function showSelectedItems(coordinates, gridItems) {
+  coordinates.forEach(([x, y]) => {
+    const index = x * 9 + y;
+    const cell = gridItems[index];
+    cell.textContent = sudokuArray[index] !== 0 ? sudokuArray[index] : "";
+  });
 }
