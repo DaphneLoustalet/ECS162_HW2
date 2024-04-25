@@ -33,43 +33,61 @@ function solveClicked() {
 
 function playClicked() {
   const sudokuSolution = generateSudoku();
-  alert(sudokuSolution);
+  // alert(sudokuSolution);
   /* Place each item in 2D array in its respective container */
   const gridItems = document.querySelectorAll(".grid-item.inner");
-  const flatSolution = sudokuSolution.flat();
+  const finalSolution = mapArray(sudokuSolution.flat());
+  // alert(finalSolution);
+  gridItems.forEach((item, index) => {
+    item.innerHTML = finalSolution[index] !== 0 ? finalSolution[index] : "";
+  });
+}
 
-  let offset;
+function mapArray(originalArray) {
+  const modifiedArray = originalArray.slice(); // Create a copy of the original array
 
-  /* TODO: Goal is to generate up to 81 in the order I intend */
-  for (let i = 0; i < 36; i++) {
-    if (i % 9 <= 2) {
-      /* First Container in Row */
-      if (Math.floor(i / 9) % 3 > 0) {
-        offset = (i % 9) + 3 * Math.floor(i / 9);
-      } else {
-        offset = i;
-      }
-
-      gridItems[offset].innerHTML = flatSolution[i] != 0 ? flatSolution[i] : "";
-    } else if (i % 9 > 2 && i % 9 <= 5) {
-      /* Second Container in Row */
-      if (Math.floor(i / 9) % 3 > 0) {
-        offset = (i % 9) + 6 + 3 * Math.floor(i / 9);
-      } else {
-        offset = (i % 9) + 6 + 9 * Math.floor(i / 9);
-      }
-
-      gridItems[offset].innerHTML = flatSolution[i] != 0 ? flatSolution[i] : "";
-    } else {
-      /* Third Container in Row */
-      if (Math.floor(i / 9) % 3 > 0) {
-        offset = (i % 9) + 12 + 3 * Math.floor(i / 9);
-      } else {
-        offset = (i % 9) + 12 + 9 * Math.floor(i / 9);
-      }
-      gridItems[offset].innerHTML = flatSolution[i] != 0 ? flatSolution[i] : "";
-    }
+  // Swap elements at specific indices
+  function swapElements(index1, index2) {
+    const temp = modifiedArray[index1];
+    modifiedArray[index1] = modifiedArray[index2];
+    modifiedArray[index2] = temp;
   }
+
+  // Define the indices to swap
+  const swaps = [
+    [3, 9],
+    [4, 10],
+    [5, 11],
+    [6, 18],
+    [7, 19],
+    [8, 20],
+    [15, 21],
+    [16, 22],
+    [17, 23],
+    [30, 36],
+    [31, 37],
+    [32, 38],
+    [33, 45],
+    [34, 46],
+    [35, 47],
+    [42, 48],
+    [43, 49],
+    [44, 50],
+    [57, 63],
+    [58, 64],
+    [59, 65],
+    [60, 72],
+    [61, 73],
+    [62, 74],
+    [69, 75],
+    [70, 76],
+    [71, 77],
+  ];
+
+  // Perform the swaps
+  swaps.forEach(([index1, index2]) => swapElements(index1, index2));
+
+  return modifiedArray;
 }
 
 /* Reference Algorithm: https://www.geeksforgeeks.org/sudoku-backtracking-7/ */
