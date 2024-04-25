@@ -19,6 +19,17 @@ function goToMainMenu() {
   window.location.href = "../../index.html"; // Redirect to the main menu
 }
 
+function solveOrValidateClicked() {
+  const button = document.querySelector(".footer-button:nth-child(2)");
+  const buttonText = button.textContent.trim();
+
+  if (buttonText === "Validate Solution") {
+    validateSolution();
+  } else if (buttonText === "Solve") {
+    solveClicked();
+  }
+}
+
 function solveClicked() {
   /* Place each item in 2D array in its respective container */
   const gridItems = document.querySelectorAll(".grid-item.inner");
@@ -270,6 +281,13 @@ function keydownHandler(event) {
     /* Update content of selected cell with pressed digit */
     selectedCell.textContent = pressedKey;
     /* If all cells are filled, change Solve Button to Validate Solution Button */
+    const allCellsFilled = [
+      ...document.querySelectorAll(".grid-item.inner"),
+    ].every((cell) => cell.textContent.trim() !== "");
+    if (allCellsFilled) {
+      const solveButton = document.querySelector(".footer-button:nth-child(2)");
+      solveButton.textContent = "Validate Solution";
+    }
   }
 }
 
@@ -317,4 +335,36 @@ function showSelectedItems(coordinates, gridItems) {
     const cell = gridItems[index];
     cell.textContent = sudokuArray[index] !== 0 ? sudokuArray[index] : "";
   });
+}
+
+function validateSolution() {
+  const userSolution = extractUserSolution();
+  const isCorrect = compareSolutions(userSolution, sudokuArray);
+
+  if (isCorrect) {
+    alert("Congratulations! Your solution is correct!");
+  } else {
+    alert("Oops! Your solution is incorrect. Please try again.");
+  }
+}
+
+function extractUserSolution() {
+  const gridItems = document.querySelectorAll(".grid-item.inner");
+  const userSolution = [];
+
+  gridItems.forEach((item) => {
+    const number = parseInt(item.textContent.trim()) || 0;
+    userSolution.push(number);
+  });
+
+  return userSolution;
+}
+
+function compareSolutions(solution1, solution2) {
+  for (let i = 0; i < solution1.length; i++) {
+    if (solution1[i] !== solution2[i]) {
+      return false;
+    }
+  }
+  return true;
 }
