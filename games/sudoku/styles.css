@@ -36,11 +36,11 @@ h1.font-effect-outline {
 }
 
 .grid-item.inner:hover {
-  background-color: #f0f0f0;
+  background-color: #fff000;
 }
 
 .grid-item.inner.selected {
-  background-color: #c0c0c0;
+  background-color: #ffbf00;
 }
 
 .footer {

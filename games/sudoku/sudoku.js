@@ -248,7 +248,7 @@ function addKeyNavigation() {
 function mouseOverHandler() {
   if (!this.classList.contains("selected")) {
     /* Change background color on hover */
-    this.style.backgroundColor = "#f0f0f0";
+    this.style.backgroundColor = "#fff000";
   }
 }
 
@@ -266,20 +266,27 @@ function cellSelectionHandler() {
     .forEach((selectedItem) => {
       selectedItem.classList.remove("selected");
       /* Reset background color */
-      selectedItem.style.backgroundColor = "#ffffff";
+      selectedItem.style.backgroundColor = "";
     });
   /* Add highlight to the clicked cell */
   this.classList.add("selected");
   /* Change background color of selected cell */
-  this.style.backgroundColor = "#c0c0c0";
+  this.style.backgroundColor = "#ffbf00";
 }
 
 function keydownHandler(event) {
   const pressedKey = event.key;
   const selectedCell = document.querySelector(".grid-item.inner.selected");
-  if (selectedCell && /[1-9]/.test(pressedKey)) {
-    /* Update content of selected cell with pressed digit */
-    selectedCell.textContent = pressedKey;
+
+  if (selectedCell) {
+    if (/[1-9]/.test(pressedKey)) {
+      /* Update content of selected cell with pressed digit */
+      selectedCell.textContent = pressedKey;
+    } else if (pressedKey === "Backspace") {
+      /* If backspace key is pressed, make the cell empty again */
+      selectedCell.textContent = "";
+    }
+
     /* If all cells are filled, change Solve Button to Validate Solution Button */
     const allCellsFilled = [
       ...document.querySelectorAll(".grid-item.inner"),
