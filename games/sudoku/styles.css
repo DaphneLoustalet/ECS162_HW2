@@ -45,7 +45,6 @@ h1.font-effect-outline {
 
 .footer {
   background-color: #022851;
-  text-align: center;
   padding: 20px 0;
   display: flex;
   justify-content: space-around;
@@ -53,9 +52,10 @@ h1.font-effect-outline {
 
 .footer-button {
   font-weight: bold;
-  font-family: "Sofia" sans-serif;
-  font-size: 50px;
   background-color: #ffbf00;
+  text-align: center;
+  font-family: "Sofia", sans-serif;
+  font-size: 50px;
   color: black;
   border: 2px solid black;
   padding: 10px 20px;
