@@ -3,27 +3,24 @@ let clickAllowed;
 const cellElements = document.querySelectorAll('[data-cell]');
 const board = document.getElementById('board');
 const winningMessage = document.getElementById('winMsg');
-
-// Need to wipe board if selected play again
-// Need to fix issue when marking adjacent items on the board
-// Need to implement bingo caller
-// How to play description
-// Make pretty
-// Maybe get rid of gap between boxes
-// Multiple boards?
-// REALLY NEED TO FIX THE BOXES ADJUSTING WHEN CLICKED ADJACENT
+const bingoNumbers = Array.from({ length: 75 }, (_, i) => i + 1);
+bingoNumbers = bingoWheel(bingoNumbers);
+let bingoInterval;
 
 const winConditions = [
+	// Rows
 	[0, 1, 2, 3, 4],
 	[5, 6, 7, 8, 9],
 	[10, 11, 12, 13, 14],
 	[15, 16, 17, 18, 19],
 	[20, 21, 22, 23, 24],
+	// Columns
 	[0, 5, 10, 15, 20],
 	[1, 6, 11, 16, 21],
 	[2, 7, 12, 17, 22],
 	[3, 8, 13, 18, 23],
-	[4, 9, 13, 18, 24],
+	[4, 9, 14, 19, 24],
+	// Diagonals
 	[0, 6, 12, 18, 24],
 	[4, 8, 12, 16, 20]
 ];
@@ -32,8 +29,9 @@ function startGame() {
 	fillCard();
 	cellElements.forEach(cell => {
 		cell.addEventListener('click', selectTile, { once: true });
-	})
+	});
 	board.classList.add("marked");
+	bingoInterval = setInterval(drawNumber, 3000);
 }
 
 function selectTile(e) {
@@ -90,6 +88,42 @@ function getRandNum(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// Fisher-Yates Sorting Algorithm
+function bingoWheel(array) {
+	for (let i = array.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[array[i], array[j]] = [array[j], array[i]];
+	}
+	return array;
+}
+
+function drawNumber() {
+	const drawnBall = document.getElementById('drawnBingoBall');
+
+	if (bingoNumbers.length > 0) {
+		const drawnValue = bingoNumbers.shift();
+
+		let letterPrefix = '';
+		if (drawnValue <= 15) {
+			letterPrefix = 'B';
+		} else if (drawnValue > 15 && drawnValue <= 30) {
+			letterPrefix = 'I';
+		} else if (drawnValue > 30 && drawnValue <= 45) {
+			letterPrefix = 'N';
+		} else if (drawnValue > 45 && drawnValue <= 60) {
+			letterPrefix = 'G';
+		} else if (drawnValue > 60 && drawnValue <= 75) {
+			letterPrefix = 'O';
+		}
+
+		drawnBall.textContent = `${letterPrefix}:${drawnValue}`;
+
+	} else {
+		clearInterval(bingoInterval);
+		console.log("No more bingo balls");
+	}
+}
+
 function checkWin() {
 	return winConditions.some(combs => {
 		return combs.every(i => {
@@ -99,8 +133,9 @@ function checkWin() {
 }
 
 function bingo() {
-	if(checkWin()) {
+	if (checkWin()) {
 		winningMessage.classList.add('show');
+		clearInterval(bingoInterval);
 	}
 }
 

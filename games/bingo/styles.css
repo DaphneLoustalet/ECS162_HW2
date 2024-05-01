@@ -118,3 +118,27 @@ footer {
 	margin: 0 10px;
 	cursor: pointer;
 }
+
+.outerCircle {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	background-color: blue;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.bingoCaller {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background-color: white;
+	font-size: 35px;
+	font-family: "Sofia", sans-serif;
+}
