@@ -1,9 +1,7 @@
-const markedClass = 'marked';
-let clickAllowed;
 const cellElements = document.querySelectorAll('[data-cell]');
 const board = document.getElementById('board');
 const winningMessage = document.getElementById('winMsg');
-const bingoNumbers = Array.from({ length: 75 }, (_, i) => i + 1);
+let bingoNumbers = Array.from({ length: 75 }, (_, i) => i + 1);
 bingoNumbers = bingoWheel(bingoNumbers);
 let bingoInterval;
 
@@ -26,17 +24,33 @@ const winConditions = [
 ];
 
 function startGame() {
-	fillCard();
 	cellElements.forEach(cell => {
-		cell.addEventListener('click', selectTile, { once: true });
+		cell.addEventListener("click", selectTile, { once: true });
 	});
+	clearBingoBoard();
+	fillCard();
 	board.classList.add("marked");
 	bingoInterval = setInterval(drawNumber, 3000);
 }
 
+function clearBingoBoard() {
+	let Bingo = "Bingo";
+
+	for (let i = 0; i < bingo.length; i++) {
+		const drawnBall = document.getElementById(Bingo[i]);
+		drawnBall.textContent = "";
+
+	}
+
+	for (let i = 0; i < cellElements.length; i++) {
+		const cell = cellElements[i];
+		cell.textContent = "";
+	}
+}
+
 function selectTile(e) {
 	const cell = e.target;
-	placeIcon(cell, markedClass);
+	placeIcon(cell, "marked");
 }
 
 function placeIcon(cell, markedClass) {
@@ -60,19 +74,19 @@ function fillCard() {
 		new Set()  
 	];
 
-	let i = 0;
-	for (let index = 0; index < cellElements.length; index++) {
-		const cell = cellElements[index];
+	let j  = 0;
+	for (let i = 0; i < cellElements.length; i++) {
+		const cell = cellElements[i];
 
-		if (index == 12) {
-			cell.textContent = 'FREE';
+		if (i == 12) {
+			cell.textContent = "FREE";
 			continue;
 		}
 
-		i = index % 5;
+		j = i % 5;
 
-		const { min, max } = ranges[i];
-		const usedNumbersSet = usedNumbers[i];
+		const { min, max } = ranges[j];
+		const usedNumbersSet = usedNumbers[j];
 
 		let randomNumber;
 		do {
@@ -98,8 +112,6 @@ function bingoWheel(array) {
 }
 
 function drawNumber() {
-	const drawnBall = document.getElementById('drawnBingoBall');
-
 	if (bingoNumbers.length > 0) {
 		const drawnValue = bingoNumbers.shift();
 
@@ -116,25 +128,25 @@ function drawNumber() {
 			letterPrefix = 'O';
 		}
 
-		drawnBall.textContent = `${letterPrefix}:${drawnValue}`;
+		const drawnBall = document.getElementById(letterPrefix);
+		drawnBall.textContent = letterPrefix + drawnValue;
 
 	} else {
 		clearInterval(bingoInterval);
-		console.log("No more bingo balls");
 	}
 }
 
 function checkWin() {
 	return winConditions.some(combs => {
 		return combs.every(i => {
-			return cellElements[i].classList.contains('marked');
+			return cellElements[i].classList.contains("marked");
 		})
 	})
 }
 
 function bingo() {
 	if (checkWin()) {
-		winningMessage.classList.add('show');
+		winningMessage.classList.add("show");
 		clearInterval(bingoInterval);
 	}
 }

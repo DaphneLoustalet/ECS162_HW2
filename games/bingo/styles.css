@@ -6,7 +6,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
-	margin: 0;
+	margin: 20px;
 }
 
 :root {
@@ -53,12 +53,13 @@ td {
 	cursor: pointer;
 }
 
-.board.marked .cell:hover,
+.cell:hover,
 .cell.marked {
-	content: url(../../img/CuteCow.png);
-	position: absolute;
-	width: auto;
-	height: 0 auto;
+	background-image: url(../../img/CuteCow.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	cursor: pointer;
 }
 
 .cell.marked {
@@ -119,15 +120,40 @@ footer {
 	cursor: pointer;
 }
 
+.bingoBalls {
+	padding: 20px;
+	display: flex;
+	justify-content: space-around;
+	align-content: space-around;
+}
+
 .outerCircle {
 	width: 150px;
 	height: 150px;
 	border-radius: 50%;
-	background-color: blue;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
 
+.outerCircle.blue {
+	background-color:blue;
+}
+
+.outerCircle.red {
+	background-color: red;
+}
+
+.outerCircle.gray {
+	background-color: gray;
+}
+
+.outerCircle.green {
+	background-color: green;
+}
+
+.outerCircle.yellow {
+	background-color: yellow;
 }
 
 .bingoCaller {
