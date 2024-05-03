@@ -27,6 +27,7 @@ const winConditions = [
 ];
 
 function startGame() {
+	clearBingoBoard();
 	freeSpot.classList.add("called");
 	cellClicker();
 	fillCard();
