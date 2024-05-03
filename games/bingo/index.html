@@ -2,18 +2,18 @@
 <html lang="en">
 
 <head>
-	<link rel="stylesheet" href="styles.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=outline">
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Bingo</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=outline">
 	<script src="bingo.js" defer></script>
 </head>
 
 <body>
-	<div class = "mainContainer">
-		<div class = "gameArea">
+	<div class="mainContainer">
+		<div class="gameArea">
 			<div class="bingoBalls">
 				<div class="outerCircle red">
 					<div class="bingoCaller" id="B"></div>
@@ -31,58 +31,63 @@
 					<div class="bingoCaller" id="O"></div>
 				</div>
 			</div>
+
 			<div class="bingoContainer">
 				<div class="board" id="board">
 					<table id="bingoTable">
-						<tr>
-							<th class="bingoHeader">B</th>
-							<th class="bingoHeader">I</th>
-							<th class="bingoHeader">N</th>
-							<th class="bingoHeader">G</th>
-							<th class="bingoHeader">O</th>
-						</tr>
-						<tr>
-							<td class="cell" id="B0" data-cell></td>
-							<td class="cell" id="I0" data-cell></td>
-							<td class="cell" id="N0" data-cell></td>
-							<td class="cell" id="G0" data-cell></td>
-							<td class="cell" id="O0" data-cell></td>
-						</tr>
-						<tr>
-							<td class="cell" id="B1" data-cell></td>
-							<td class="cell" id="I1" data-cell></td>
-							<td class="cell" id="N1" data-cell></td>
-							<td class="cell" id="G1" data-cell></td>
-							<td class="cell" id="O1" data-cell></td>
-						</tr>
-						<tr>
-							<td class="cell" id="B2" data-cell></td>
-							<td class="cell" id="I2" data-cell></td>
-							<td class="cell" id="free" data-cell></td>
-							<td class="cell" id="G2" data-cell></td>
-							<td class="cell" id="O2" data-cell></td>
-						</tr>
-						<tr>
-							<td class="cell" id="B3" data-cell></td>
-							<td class="cell" id="I3" data-cell></td>
-							<td class="cell" id="N3" data-cell></td>
-							<td class="cell" id="G3" data-cell></td>
-							<td class="cell" id="O3" data-cell></td>
-						</tr>
-						<tr>
-							<td class="cell" id="B4" data-cell></td>
-							<td class="cell" id="I4" data-cell></td>
-							<td class="cell" id="N4" data-cell></td>
-							<td class="cell" id="G4" data-cell></td>
-							<td class="cell" id="O4" data-cell></td>
-						</tr>
+						<thead>
+							<tr>
+								<th class="bingoHeader">B</th>
+								<th class="bingoHeader">I</th>
+								<th class="bingoHeader">N</th>
+								<th class="bingoHeader">G</th>
+								<th class="bingoHeader">O</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="cell" id="B0" data-cell></td>
+								<td class="cell" id="I0" data-cell></td>
+								<td class="cell" id="N0" data-cell></td>
+								<td class="cell" id="G0" data-cell></td>
+								<td class="cell" id="O0" data-cell></td>
+							</tr>
+							<tr>
+								<td class="cell" id="B1" data-cell></td>
+								<td class="cell" id="I1" data-cell></td>
+								<td class="cell" id="N1" data-cell></td>
+								<td class="cell" id="G1" data-cell></td>
+								<td class="cell" id="O1" data-cell></td>
+							</tr>
+							<tr>
+								<td class="cell" id="B2" data-cell></td>
+								<td class="cell" id="I2" data-cell></td>
+								<td class="cell" id="free" data-cell></td>
+								<td class="cell" id="G2" data-cell></td>
+								<td class="cell" id="O2" data-cell"></td>
+							</tr>
+							<tr>
+								<td class="cell" id="B3" data-cell></td>
+								<td class="cell" id="I3" data-cell></td>
+								<td class="cell" id="N3" data-cell></td>
+								<td class="cell" id="G3" data-cell></td>
+								<td class="cell" id="O3" data-cell></td>
+							</tr>
+							<tr>
+								<td class="cell" id="B4" data-cell></td>
+								<td class="cell" id="I4" data-cell></td>
+								<td class="cell" id="N4" data-cell></td>
+								<td class="cell" id="G4" data-cell></td>
+								<td class="cell" id="O4" data-cell></td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 
-		<div class = "instructionSection">
-			<section class = "instructions">
+		<div class="instructionSection">
+			<section class="instructions">
 				<h2>How to Play Bingo</h2>
 				<p>Welcome to our Bingo game! Here are the steps to play:</p>
 				<ol>
@@ -99,7 +104,7 @@
 			</section>
 
 			<div class="outerCircle aggieBlue">
-					<button class="bingo" onclick="bingo()">BINGO!</button>
+				<button class="bingo" onclick="bingo()">BINGO!</button>
 			</div>
 		</div>
 	</div>
@@ -111,7 +116,7 @@
 
 	<footer>
 		<button class="footer-button" onclick="goToMainMenu()">Main Menu</button>
-		<button class="footer-button" id = "play" onclick="startGame()">Play</button>
+		<button class="footer-button" id="play" onclick="startGame()">Play</button>
 	</footer>
 </body>
 

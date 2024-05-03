@@ -7,7 +7,7 @@ body {
 	height: 100vh;
 }
 
-/* Main container to control layout */
+/* Main Container Styling */
 .mainContainer {
 	display: flex;
 	justify-content: center;
@@ -16,13 +16,14 @@ body {
 	padding: 20px;
 }
 
-/* Game area containing bingo balls and bingo board */
+/* Game Area Styling */
 .gameArea {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
+/* Color Flash Animation */
 @keyframes colorFlash {
 	0% {
 		color: red;
@@ -45,6 +46,7 @@ body {
 	}
 }
 
+/* Instruction Section Styling */
 .instructionSection {
 	margin-top: 195px;
 	display: flex;
@@ -69,7 +71,7 @@ h2 {
 	font-size: 20px;
 }
 
-/* Bingo button styling */
+/* Bingo Button Styling */
 .bingo {
 	height: 180px;
 	width: 180px;
@@ -84,13 +86,13 @@ h2 {
 	animation: colorFlash 2s infinite;
 }
 
-/* Variables */
+/* CSS Variables */
 :root {
 	--cell-size: 100px;
 	--mark-size: calc(var(--cell-size) * 0.9);
 }
 
-/* Bingo Table Styling */
+/* Bingo Container Styling */
 .bingoContainer {
 	background-color: #022851;
 	padding: 5px;
@@ -106,6 +108,7 @@ h2 {
 	border: 3px solid black;
 }
 
+/* Bingo Table Styling */
 .bingoTable {
 	margin: 0 auto;
 	position: fixed;
@@ -137,7 +140,7 @@ td {
 
 .cell.called:hover,
 .cell.marked {
-	/* Credit: https: //ih1.redbubble.net/image.2079046397.8434/st,small,507x507-pad,600x600,f8f8f8.jpg */
+	/* Image Credit: https://ih1.redbubble.net/image.2079046397.8434/st,small,507x507-pad,600x600,f8f8f8.jpg */
 	background-image: url(../../img/CuteCow.png);
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -201,7 +204,6 @@ footer {
 	font-size: 50px;
 	color: #022851;
 	border: 2px solid black;
-	padding: auto;
 	margin: 0 10px;
 	cursor: pointer;
 }
