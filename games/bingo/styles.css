@@ -1,19 +1,20 @@
+/* General Body Styling */
 body {
 	background: #B3A369;
 	display: flex;
 	flex-direction: column;
-	align-content: center;
-	justify-content: center;
 	align-items: center;
 	height: 100vh;
 	margin: 20px;
 }
 
+/* Variables */
 :root {
 	--cell-size: 100px;
-	--mark-size: calc(var(--cell-size) * .9);
+	--mark-size: calc(var(--cell-size) * 0.9);
 }
 
+/* Bingo Table Styling */
 .bingoHeader {
 	font-size: 30px;
 	color: #B3A369;
@@ -46,14 +47,12 @@ td {
 	width: var(--cell-size);
 	height: var(--cell-size);
 	justify-content: center;
-	justify-items: center;
-	align-items: center;
 	align-items: center;
 	position: relative;
 	cursor: pointer;
 }
 
-.cell:hover,
+.cell.called:hover,
 .cell.marked {
 	background-image: url(../../img/CuteCow.png);
 	background-size: contain;
@@ -66,6 +65,7 @@ td {
 	cursor: not-allowed;
 }
 
+/* Winning Message Styling */
 .winningMsg {
 	display: none;
 	position: fixed;
@@ -73,7 +73,7 @@ td {
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background-color: rgba(0,0,0,.9);
+	background-color: rgba(0, 0, 0, 0.9);
 	justify-content: center;
 	align-items: center;
 	color: white;
@@ -84,9 +84,9 @@ td {
 .winningMsg button {
 	font-size: xx-large;
 	background-color: #B3A369;
-	color:#022851;
+	color: #022851;
 	border: 1px solid black;
-	padding: .25em .5em;
+	padding: 0.25em 0.5em;
 	cursor: pointer;
 }
 
@@ -100,6 +100,7 @@ td {
 	display: flex;
 }
 
+/* Footer Styling */
 footer {
 	background-color: #022851;
 	padding: 20px 0;
@@ -120,6 +121,7 @@ footer {
 	cursor: pointer;
 }
 
+/* Bingo Balls Styling */
 .bingoBalls {
 	padding: 20px;
 	display: flex;
@@ -127,6 +129,7 @@ footer {
 	align-content: space-around;
 }
 
+/* Outer Circles Styling */
 .outerCircle {
 	width: 150px;
 	height: 150px;
@@ -136,16 +139,16 @@ footer {
 	align-items: center;
 }
 
-.outerCircle.blue {
-	background-color:blue;
-}
-
 .outerCircle.red {
 	background-color: red;
 }
 
-.outerCircle.gray {
-	background-color: gray;
+.outerCircle.purple {
+	background-color: purple;
+}
+
+.outerCircle.blue {
+	background-color: blue;
 }
 
 .outerCircle.green {
@@ -156,6 +159,7 @@ footer {
 	background-color: yellow;
 }
 
+/* Bingo Caller Styling */
 .bingoCaller {
 	width: 100px;
 	height: 100px;

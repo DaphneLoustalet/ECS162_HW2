@@ -1,6 +1,7 @@
 const cellElements = document.querySelectorAll('[data-cell]');
 const board = document.getElementById('board');
 const winningMessage = document.getElementById('winMsg');
+const freeSpot = document.getElementById('free');
 let bingoNumbers = Array.from({ length: 75 }, (_, i) => i + 1);
 bingoNumbers = bingoWheel(bingoNumbers);
 let bingoInterval;
@@ -24,19 +25,23 @@ const winConditions = [
 ];
 
 function startGame() {
+	freeSpot.classList.add("called");
 	cellElements.forEach(cell => {
 		cell.addEventListener("click", selectTile, { once: true });
 	});
-	clearBingoBoard();
 	fillCard();
-	board.classList.add("marked");
 	bingoInterval = setInterval(drawNumber, 3000);
 }
 
-function clearBingoBoard() {
-	let Bingo = "Bingo";
+function playAgain() {
+	winningMessage.classList.remove("show")
+	clearBingoBoard();
+}
 
-	for (let i = 0; i < bingo.length; i++) {
+function clearBingoBoard() {
+	let Bingo = "BINGO";
+
+	for (let i = 0; i < Bingo.length; i++) {
 		const drawnBall = document.getElementById(Bingo[i]);
 		drawnBall.textContent = "";
 
@@ -44,13 +49,18 @@ function clearBingoBoard() {
 
 	for (let i = 0; i < cellElements.length; i++) {
 		const cell = cellElements[i];
+		cell.classList.remove("marked");
+		cell.classList.remove("called");
 		cell.textContent = "";
 	}
 }
 
 function selectTile(e) {
 	const cell = e.target;
-	placeIcon(cell, "marked");
+
+	if (cell.classList.contains("called")) {
+		placeIcon(cell, "marked");
+	}
 }
 
 function placeIcon(cell, markedClass) {
@@ -114,19 +124,9 @@ function bingoWheel(array) {
 function drawNumber() {
 	if (bingoNumbers.length > 0) {
 		const drawnValue = bingoNumbers.shift();
+		checkIfCalled(drawnValue);
 
-		let letterPrefix = '';
-		if (drawnValue <= 15) {
-			letterPrefix = 'B';
-		} else if (drawnValue > 15 && drawnValue <= 30) {
-			letterPrefix = 'I';
-		} else if (drawnValue > 30 && drawnValue <= 45) {
-			letterPrefix = 'N';
-		} else if (drawnValue > 45 && drawnValue <= 60) {
-			letterPrefix = 'G';
-		} else if (drawnValue > 60 && drawnValue <= 75) {
-			letterPrefix = 'O';
-		}
+		const letterPrefix = getLetterPrefix(drawnValue)
 
 		const drawnBall = document.getElementById(letterPrefix);
 		drawnBall.textContent = letterPrefix + drawnValue;
@@ -134,6 +134,31 @@ function drawNumber() {
 	} else {
 		clearInterval(bingoInterval);
 	}
+}
+
+function getLetterPrefix(drawnValue) {
+	let letterPrefix = '';
+	if (drawnValue <= 15) {
+		letterPrefix = 'B';
+	} else if (drawnValue > 15 && drawnValue <= 30) {
+		letterPrefix = 'I';
+	} else if (drawnValue > 30 && drawnValue <= 45) {
+		letterPrefix = 'N';
+	} else if (drawnValue > 45 && drawnValue <= 60) {
+		letterPrefix = 'G';
+	} else if (drawnValue > 60 && drawnValue <= 75) {
+		letterPrefix = 'O';
+	}
+
+	return letterPrefix;
+}
+
+function checkIfCalled(drawnNumber) {
+	cellElements.forEach(cell => {
+		if (cell.textContent == drawnNumber) {
+			cell.classList.add("called");
+		}
+	});
 }
 
 function checkWin() {
