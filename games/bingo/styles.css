@@ -1,6 +1,6 @@
 /* General Body Styling */
 body {
-	background: #FFBF00;
+	background: white;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -116,11 +116,11 @@ footer {
 
 .footer-button {
 	font-weight: bold;
-	background-color: #B3A369;
+	background-color: #FFBF00;
 	text-align: center;
 	font-family: "Sofia", sans-serif;
 	font-size: 50px;
-	color: black;
+	color: #022851;
 	border: 2px solid black;
 	padding: auto;
 	margin: 0 10px;
