@@ -33,7 +33,6 @@ function startGame() {
 	fillCard();
 	bingoNumbers = bingoWheel(bingoNumbers);
 	bingoInterval = setInterval(drawNumber, 2000);
-	play.classList.add("blocked");
 }
 
 function playAgain() {

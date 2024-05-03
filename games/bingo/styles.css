@@ -206,11 +206,6 @@ footer {
 	cursor: pointer;
 }
 
-.footer-button.blocked {
-	cursor: not-allowed;
-	
-}
-
 /* Bingo Balls Styling */
 .bingoBalls {
 	padding: 20px;
