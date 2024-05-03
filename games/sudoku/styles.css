@@ -1,30 +1,42 @@
 body {
   font-family: "Sofia", sans-serif;
   font-size: 30px;
+  margin: 0;
+  padding: 0;
 }
 
 h1.font-effect-outline {
   color: #ffbf00;
 }
 
-.empty-container {
-  margin: 10%;
+@media (max-width: 768px) {
+  .empty-container {
+    padding: 0%;
+    border: 10px solid black;
+  }
 }
 
+@media (min-width: 768px) {
+  .empty-container {
+    padding: 10%;
+  }
+}
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  padding: none;
+  text-align: center;
+  justify-content: center;
+  padding: 0;
 }
 
 .grid-container.parent {
-  margin-left: 25%;
-  margin-right: 25%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .grid-item {
   border: 5px solid #022851;
-  padding: none;
+  padding: 0;
 }
 
 .grid-item.inner {
@@ -48,17 +60,18 @@ h1.font-effect-outline {
   padding: 20px 0;
   display: flex;
   justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 .footer-button {
   font-weight: bold;
   background-color: #ffbf00;
-  text-align: center;
   font-family: "Sofia", sans-serif;
-  font-size: 50px;
+  font-size: 30px;
   color: black;
   border: 2px solid black;
   padding: 10px 20px;
-  margin: 0 10px;
   cursor: pointer;
 }
