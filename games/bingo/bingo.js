@@ -32,7 +32,7 @@ function startGame() {
 	cellClicker();
 	fillCard();
 	bingoNumbers = bingoWheel(bingoNumbers);
-	bingoInterval = setInterval(drawNumber, 2000);
+	bingoInterval = setInterval(drawNumber, 3000);
 }
 
 function playAgain() {
