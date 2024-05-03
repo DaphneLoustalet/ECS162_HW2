@@ -3,9 +3,85 @@ body {
 	background: white;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	justify-content: space-between;
 	height: 100vh;
-	margin: 20px;
+}
+
+/* Main container to control layout */
+.mainContainer {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	height: 100vh;
+	padding: 20px;
+}
+
+/* Game area containing bingo balls and bingo board */
+.gameArea {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+@keyframes colorFlash {
+	0% {
+		color: red;
+	}
+
+	25% {
+		color: blue;
+	}
+
+	50% {
+		color: purple;
+	}
+
+	75% {
+		color: green;
+	}
+
+	100% {
+		color: yellow;
+	}
+}
+
+.instructionSection {
+	margin-top: 195px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+h2 {
+	display: inline-block;
+	border: 2px solid #FFBF00;
+	padding: 5px;
+}
+
+.instructions {
+	background-color: #022851;
+	border: 3px solid #FFBF00;
+	color: white;
+	padding: 5px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+
+/* Bingo button styling */
+.bingo {
+	height: 180px;
+	width: 180px;
+	font-weight: bold;
+	text-align: center;
+	font-family: "Sofia", sans-serif;
+	font-size: 40px;
+	color: #022851;
+	cursor: pointer;
+	background-color: #FFBF00;
+	border-radius: 50%;
+	animation: colorFlash 2s infinite;
 }
 
 /* Variables */
@@ -21,6 +97,7 @@ body {
 	border-radius: 10px;
 	margin-bottom: 20px;
 }
+
 .bingoHeader {
 	font-size: 30px;
 	color: #FFBF00;
@@ -60,6 +137,7 @@ td {
 
 .cell.called:hover,
 .cell.marked {
+	/* Credit: https: //ih1.redbubble.net/image.2079046397.8434/st,small,507x507-pad,600x600,f8f8f8.jpg */
 	background-image: url(../../img/CuteCow.png);
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -85,6 +163,7 @@ td {
 	color: white;
 	font-size: 5rem;
 	flex-direction: column;
+	animation: colorFlash 2s infinite;
 }
 
 .winningMsg button {
@@ -127,6 +206,11 @@ footer {
 	cursor: pointer;
 }
 
+.footer-button.blocked {
+	cursor: not-allowed;
+	
+}
+
 /* Bingo Balls Styling */
 .bingoBalls {
 	padding: 20px;
@@ -135,7 +219,6 @@ footer {
 	align-content: space-around;
 }
 
-/* Outer Circles Styling */
 .outerCircle {
 	width: 150px;
 	height: 150px;
@@ -165,6 +248,12 @@ footer {
 	background-color: yellow;
 }
 
+.outerCircle.aggieBlue {
+	width: 250px;
+	height: 250px;
+	background-color: #022851;
+}
+
 /* Bingo Caller Styling */
 .bingoCaller {
 	width: 100px;
@@ -177,8 +266,4 @@ footer {
 	background-color: white;
 	font-size: 35px;
 	font-family: "Sofia", sans-serif;
-}
-
-.footer-button.blocked {
-	cursor: not-allowed;
 }

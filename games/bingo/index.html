@@ -12,71 +12,98 @@
 </head>
 
 <body>
-	<div class="bingoBalls">
-		<div class="outerCircle red">
-			<div class="bingoCaller" id="B"></div>
+	<div class = "mainContainer">
+		<div class = "gameArea">
+			<div class="bingoBalls">
+				<div class="outerCircle red">
+					<div class="bingoCaller" id="B"></div>
+				</div>
+				<div class="outerCircle purple">
+					<div class="bingoCaller" id="I"></div>
+				</div>
+				<div class="outerCircle blue">
+					<div class="bingoCaller" id="N"></div>
+				</div>
+				<div class="outerCircle green">
+					<div class="bingoCaller" id="G"></div>
+				</div>
+				<div class="outerCircle yellow">
+					<div class="bingoCaller" id="O"></div>
+				</div>
+			</div>
+			<div class="bingoContainer">
+				<div class="board" id="board">
+					<table id="bingoTable">
+						<tr>
+							<th class="bingoHeader">B</th>
+							<th class="bingoHeader">I</th>
+							<th class="bingoHeader">N</th>
+							<th class="bingoHeader">G</th>
+							<th class="bingoHeader">O</th>
+						</tr>
+						<tr>
+							<td class="cell" id="B0" data-cell></td>
+							<td class="cell" id="I0" data-cell></td>
+							<td class="cell" id="N0" data-cell></td>
+							<td class="cell" id="G0" data-cell></td>
+							<td class="cell" id="O0" data-cell></td>
+						</tr>
+						<tr>
+							<td class="cell" id="B1" data-cell></td>
+							<td class="cell" id="I1" data-cell></td>
+							<td class="cell" id="N1" data-cell></td>
+							<td class="cell" id="G1" data-cell></td>
+							<td class="cell" id="O1" data-cell></td>
+						</tr>
+						<tr>
+							<td class="cell" id="B2" data-cell></td>
+							<td class="cell" id="I2" data-cell></td>
+							<td class="cell" id="free" data-cell></td>
+							<td class="cell" id="G2" data-cell></td>
+							<td class="cell" id="O2" data-cell></td>
+						</tr>
+						<tr>
+							<td class="cell" id="B3" data-cell></td>
+							<td class="cell" id="I3" data-cell></td>
+							<td class="cell" id="N3" data-cell></td>
+							<td class="cell" id="G3" data-cell></td>
+							<td class="cell" id="O3" data-cell></td>
+						</tr>
+						<tr>
+							<td class="cell" id="B4" data-cell></td>
+							<td class="cell" id="I4" data-cell></td>
+							<td class="cell" id="N4" data-cell></td>
+							<td class="cell" id="G4" data-cell></td>
+							<td class="cell" id="O4" data-cell></td>
+						</tr>
+					</table>
+				</div>
+			</div>
 		</div>
-		<div class="outerCircle purple">
-			<div class="bingoCaller" id="I"></div>
-		</div>
-		<div class="outerCircle blue">
-			<div class="bingoCaller" id="N"></div>
-		</div>
-		<div class="outerCircle green">
-			<div class="bingoCaller" id="G"></div>
-		</div>
-		<div class="outerCircle yellow">
-			<div class="bingoCaller" id="O"></div>
+
+		<div class = "instructionSection">
+			<section class = "instructions">
+				<h2>How to Play Bingo</h2>
+				<p>Welcome to our Bingo game! Here are the steps to play:</p>
+				<ol>
+					<li>Click the 'Start' button to begin the game.</li>
+					<li>Watch the bingo caller announce a new number.</li>
+					<li>Check your bingo card for the called number.</li>
+					<li>If you have the called number on your card, mark it.</li>
+					<li>Continue marking numbers as they are called.</li>
+					<li>If you complete a row, column, or diagonal with marked numbers, click the 'Bingo!' button.</li>
+					<li>Once you call Bingo, the game will check your card to confirm your win.</li>
+					<li>Follow the instructions to start a new game if desired.</li>
+				</ol>
+				<p>Enjoy playing Bingo and good luck!</p>
+			</section>
+
+			<div class="outerCircle aggieBlue">
+					<button class="bingo" onclick="bingo()">BINGO!</button>
+			</div>
 		</div>
 	</div>
-	<div class="bingoContainer">
-		<div class="board" id="board">
-			<table id="bingoTable">
-				<tr>
-					<th class="bingoHeader">B</th>
-					<th class="bingoHeader">I</th>
-					<th class="bingoHeader">N</th>
-					<th class="bingoHeader">G</th>
-					<th class="bingoHeader">O</th>
-				</tr>
-				<tr>
-					<td class="cell" id="B0" data-cell></td>
-					<td class="cell" id="I0" data-cell></td>
-					<td class="cell" id="N0" data-cell></td>
-					<td class="cell" id="G0" data-cell></td>
-					<td class="cell" id="O0" data-cell></td>
-				</tr>
-				<tr>
-					<td class="cell" id="B1" data-cell></td>
-					<td class="cell" id="I1" data-cell></td>
-					<td class="cell" id="N1" data-cell></td>
-					<td class="cell" id="G1" data-cell></td>
-					<td class="cell" id="O1" data-cell></td>
-				</tr>
-				<tr>
-					<td class="cell" id="B2" data-cell></td>
-					<td class="cell" id="I2" data-cell></td>
-					<td class="cell" id="free" data-cell></td>
-					<td class="cell" id="G2" data-cell></td>
-					<td class="cell" id="O2" data-cell></td>
-				</tr>
-				<tr>
-					<td class="cell" id="B3" data-cell></td>
-					<td class="cell" id="I3" data-cell></td>
-					<td class="cell" id="N3" data-cell></td>
-					<td class="cell" id="G3" data-cell></td>
-					<td class="cell" id="O3" data-cell></td>
-				</tr>
-				<tr>
-					<td class="cell" id="B4" data-cell></td>
-					<td class="cell" id="I4" data-cell></td>
-					<td class="cell" id="N4" data-cell></td>
-					<td class="cell" id="G4" data-cell></td>
-					<td class="cell" id="O4" data-cell></td>
-				</tr>
-			</table>
-		</div>
-	</div>
+
 	<div class="winningMsg" id="winMsg">
 		<div>BINGO!</div>
 		<button class="playAgain" onclick="playAgain()">Play Again</button>
@@ -85,7 +112,6 @@
 	<footer>
 		<button class="footer-button" onclick="goToMainMenu()">Main Menu</button>
 		<button class="footer-button" id = "play" onclick="startGame()">Play</button>
-		<button class="footer-button" onclick="bingo()">Bingo</button>
 	</footer>
 </body>
 
