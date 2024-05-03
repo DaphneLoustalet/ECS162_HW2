@@ -1,9 +1,11 @@
 const cellElements = document.querySelectorAll('[data-cell]');
 const board = document.getElementById('board');
+const play = document.getElementById('play');
 const winningMessage = document.getElementById('winMsg');
 const freeSpot = document.getElementById('free');
+const BINGO_LETTERS = "BINGO";
+
 let bingoNumbers = Array.from({ length: 75 }, (_, i) => i + 1);
-bingoNumbers = bingoWheel(bingoNumbers);
 let bingoInterval;
 
 const winConditions = [
@@ -26,33 +28,40 @@ const winConditions = [
 
 function startGame() {
 	freeSpot.classList.add("called");
-	cellElements.forEach(cell => {
-		cell.addEventListener("click", selectTile, { once: true });
-	});
+	cellClicker();
 	fillCard();
-	bingoInterval = setInterval(drawNumber, 3000);
+	bingoNumbers = bingoWheel(bingoNumbers);
+	bingoInterval = setInterval(drawNumber, 5000);
+	play.classList.add("blocked");
 }
 
 function playAgain() {
-	winningMessage.classList.remove("show")
+	winningMessage.classList.remove("show");
 	clearBingoBoard();
 }
 
 function clearBingoBoard() {
-	let Bingo = "BINGO";
+	clearDrawnBalls();
+	clearBingoCells();
+}
 
-	for (let i = 0; i < Bingo.length; i++) {
-		const drawnBall = document.getElementById(Bingo[i]);
-		drawnBall.textContent = "";
-
+function clearDrawnBalls() {
+	for (const letter of BINGO_LETTERS) {
+		document.getElementById(letter).textContent = "";
 	}
+}
 
-	for (let i = 0; i < cellElements.length; i++) {
-		const cell = cellElements[i];
-		cell.classList.remove("marked");
-		cell.classList.remove("called");
+function clearBingoCells() {
+	cellElements.forEach(cell => {
+		cell.classList.remove("marked", "called");
 		cell.textContent = "";
-	}
+	});
+}
+
+function cellClicker() {
+	cellElements.forEach(cell => {
+		cell.addEventListener("click", selectTile, { once: true });
+	});
 }
 
 function selectTile(e) {
@@ -77,14 +86,14 @@ function fillCard() {
 	];
 
 	const usedNumbers = [
-		new Set(), 
-		new Set(), 
-		new Set(), 
-		new Set(), 
-		new Set()  
+		new Set(),
+		new Set(),
+		new Set(),
+		new Set(),
+		new Set()
 	];
 
-	let j  = 0;
+	let j = 0;
 	for (let i = 0; i < cellElements.length; i++) {
 		const cell = cellElements[i];
 
@@ -126,11 +135,10 @@ function drawNumber() {
 		const drawnValue = bingoNumbers.shift();
 		checkIfCalled(drawnValue);
 
-		const letterPrefix = getLetterPrefix(drawnValue)
+		const letterPrefix = getLetterPrefix(drawnValue);
 
 		const drawnBall = document.getElementById(letterPrefix);
 		drawnBall.textContent = letterPrefix + drawnValue;
-
 	} else {
 		clearInterval(bingoInterval);
 	}
@@ -165,8 +173,8 @@ function checkWin() {
 	return winConditions.some(combs => {
 		return combs.every(i => {
 			return cellElements[i].classList.contains("marked");
-		})
-	})
+		});
+	});
 }
 
 function bingo() {
