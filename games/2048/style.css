@@ -1,5 +1,4 @@
 .container {
-  width: 56%;
   margin: 0 auto;
   background-color: #022851;
   display: -ms-flexbox;
@@ -9,8 +8,21 @@
   flex-wrap: wrap;
   padding: 0 4px;
   display: grid;
-  grid-template-columns: auto 445px;
   font-family: "Sofia", sans-serif;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    grid-template-columns: auto 1000px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    width: 56%;
+    grid-template-columns: auto 445px;
+  }
 }
 
 .grid {
